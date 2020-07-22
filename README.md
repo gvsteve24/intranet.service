@@ -1,2 +1,2 @@
 # enterphin.intranet
-intranet pilot project for 2weeks
+intranet pilot project
