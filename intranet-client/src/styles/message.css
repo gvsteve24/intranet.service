@@ -1,0 +1,130 @@
+#react-aria-modal-dialog .message-form {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
+    padding: 0 40px;
+    box-shadow: none;
+    width: 530px;
+    height: 420px;
+    top: 0;
+    right: 0;
+    background-color: #f3f3f3;
+}
+
+#react-aria-modal-dialog .unregister-form {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
+    padding: 0 60px;
+    box-shadow: none;
+    top: 0;
+    right: 0;
+    background-color: #f3f3f3;
+}
+
+#react-aria-modal-dialog h3 {
+    width: 100%;
+    margin-left: -10px;
+    margin-top: 30px;
+}
+
+#react-aria-modal-dialog .unregister-form h3{
+    font-size: 18px;
+    width: 100%;
+    margin: 40px 0;
+}
+
+#react-aria-modal-dialog label {
+    line-height: 40px;
+    font-size: 14px;
+    width: 115px;
+    height: 40px;
+    text-align: end;
+    margin-right: 10px;
+}
+
+#react-aria-modal-dialog ul {
+    position: absolute;
+    top: 115px;
+    left: 0px;
+    list-style: none;
+    margin: 0;
+}
+
+#react-aria-modal-dialog li {
+    position: relative;
+    left: 125px;
+    font-size: 12px;
+    width: 405px;
+    height: 37px;
+    line-height: 12px;
+    box-shadow: 0px 6px 10px 1px rgba(0,0,0,0.25);
+    border-radius: 4px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#react-aria-modal-dialog li:hover {
+    background-color: #f3f3f3;
+}
+
+#react-aria-modal-dialog span {
+    margin-left: 10px;
+}
+
+#react-aria-modal-dialog input[type=button] {
+    font-size: 18px;
+    line-height: 40px;
+    color: #fff;
+    box-sizing: border-box;
+    width: 140px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #0d334b;
+    margin-left: 20px;
+}
+
+#react-aria-modal-dialog input[type=button].quit-unregister {
+    color: #fff;
+    background-color: #808080; 
+    margin-left: 190px;
+}
+
+
+#react-aria-modal-dialog input[type=submit] {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 300;
+    line-height: 18px;
+    width: 140px;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 10px 36px;
+    background-color: #0d334b;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    letter-spacing: -0.1em;
+    margin: 4px 0px 0px 392px;
+}
+
+#react-aria-modal-dialog .content {
+    font-size: 14px;
+    color: #000;
+    width: 530px;
+    height: 200px;            
+    background-color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin: 10px 0 20px 0;
+    box-sizing: border-box;
+    resize: none;
+}
+
+#react-aria-modal-dialog .content::placeholder {
+    font-size: 14px;
+    color: #d0d0d0;
+    letter-spacing: -0.1em;
+}

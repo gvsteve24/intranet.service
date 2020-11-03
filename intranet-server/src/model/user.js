@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const Conversation = require('./conversation');
+const Message = require('./message');
 
 const userSchema = new mongoose.Schema({
     kr_name: {
@@ -14,7 +16,10 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        unique: true, 
+        index: {
+            unique: true,
+            partialFilterExpression: { email: { $exists: true }}
+        },
         required: true,
         trim: true,
         toLowerCase: true,
@@ -49,9 +54,71 @@ const userSchema = new mongoose.Schema({
     },
     avatar: {
         type: Buffer
-    }
+    },
+    favorites: {
+        type: Map,
+        of: String
+    },
+    favMessages: {
+        type: Map,
+        of: String
+    },
+    tokens: [{
+        token: {
+            type: String,
+            required: true
+        }
+    }]
 });
 
-const User = mongoose.model('User', userSchema);
+userSchema.index({email:1}, {partialFilterExpression: { email : {$exists: true} }});
 
-module.exports = User;
+userSchema.virtual('conversations', {
+    ref: 'Conversation',
+    localField: 'kr_name',
+    foreignField: 'participants.kr_name'
+}, { toJSON: {virtuals: true}});
+
+userSchema.methods.generateAuthToken = async function() {
+    const user = this;
+    const token = jwt.sign({ _id: user.id.toString() }, process.env.JWT_SECRET);
+    user.tokens = user.tokens.concat({token: token});
+
+    await user.save();
+    return token;
+};
+
+userSchema.statics.findByCredential = async (email, password) => {
+    const user = await User.findOne({email});
+
+    if(!user) {
+        throw new Error('Unable to login');
+    }
+
+    const isValidPass = await bcrypt.compare(password, user.password)
+
+    if(!isValidPass){
+        throw new Error('Unable to login');
+    }
+    console.log('method')
+    return user;
+}
+
+userSchema.pre('save', async function(next) {
+    const user = this;
+
+    if(user.isModified('password')){
+        user.password = await bcrypt.hash(user.password, 8);
+    }
+    next();
+});
+
+userSchema.pre('remove', async function(next){
+    const user = this;
+    await Conversation.deleteMany({'participants.kr_name': user.kr_name});
+    await Message.deleteMany({$or:[{sender: user._id}, {receiver: user._id}]});
+    next();
+})
+
+const User = mongoose.model('User', userSchema);
+module.exports = {userSchema, User};
