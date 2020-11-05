@@ -64,7 +64,6 @@ routes.get('/messages', auth, async ( req, res ) => {
         let sort = {};
         let match;
 
-        
         if(req.query.name){
             user = await User.findOne({ kr_name: req.query.name });
             match = doc => ({'participants.kr_name': req.query.name});
@@ -116,6 +115,15 @@ routes.get('/messages', auth, async ( req, res ) => {
 
             return messageCopy;
         }));
+
+        messages.sort((a, b) => {
+            if(a.recv_chk && !b.recv_chk)
+                return 1;
+            else if(!a.recv_chk && b.recv_chk)
+                return -1;
+            else
+                return 0;
+        });
         
         res.status(200).send(messages);
     } catch (error) {
@@ -123,23 +131,19 @@ routes.get('/messages', auth, async ( req, res ) => {
     }
 });
 
-// add favorite message by id
+// add messagePref when message is read first
 routes.patch('/messages/:id', auth, async (req, res) => {
     const _id = req.params.id;
 
-    try {
-        const user = req.user;
+    try{
+        const doc = await Message.findByIdAndUpdate({_id}, {recv_chk: true});
+        if(doc && doc.recv_chk){
+            await doc.save();
 
-        if(user && user.favMessages && Array.from(user.favMessages.keys()).includes(`${_id}`)){
-            let value = user.favMessages.get(_id);
-            await user.set(`favMessages.${_id}`, value === 'true' ? false : true);
+            res.status(200).send(doc);
         }else{
-            await user.set(`favMessages.${_id}`, true);
+            return res.status(500).send("no message found");
         }
-
-        await user.save();
-
-        res.status(200).send(user);
     }catch(e){
         res.status(500).send();
     }

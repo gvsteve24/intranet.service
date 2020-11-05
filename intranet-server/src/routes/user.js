@@ -158,6 +158,29 @@ router.patch('/users/:id', auth, async (req, res) => {
     }
 });
 
+// add favorite message by id
+// users?message=_id
+router.patch('/users', auth, async (req, res) => {
+    const _id = req.query.message;
+
+    try {
+        const user = req.user;
+
+        if(user && user.favMessages && Array.from(user.favMessages.keys()).includes(`${_id}`)){
+            let value = user.favMessages.get(_id);
+            await user.set(`favMessages.${_id}`, value === 'true' ? false : true);
+        }else{
+            await user.set(`favMessages.${_id}`, true);
+        }
+
+        await user.save();
+
+        res.status(200).send(user);
+    }catch(e){
+        res.status(500).send();
+    }
+});
+
 router.delete('/users/me', auth, async (req, res) => {
     try {
         await req.user.remove();

@@ -52,6 +52,10 @@ const Flex = styled.div`
         margin: 5px;
     }
 
+    .bold {
+        font-weight: 700;
+    }
+
     ${p => p.message && css`
         width: 900px;
         height: 70px;
@@ -90,9 +94,10 @@ const Flex = styled.div`
     `};
 `;
 
-const Messages = ({ me, messages, favorites, checkMessage, toggleFavorites, loading }) => {
-    const handleMessage = (name, content) => {
+const Messages = ({ me, messages, favorites, checkMessage, checkRead, toggleFavorites, loading }) => {
+    const handleMessage = (name, content, id) => {
         checkMessage(name, content);
+        checkRead(undefined, undefined, id);
     }
 
     const handleFavorites = (id) => {
@@ -122,14 +127,14 @@ const Messages = ({ me, messages, favorites, checkMessage, toggleFavorites, load
                 
                 return (<Flex message key={index}>
                     {message.sender_avatar ? <img alt="avatar" src={img64String}/> : <ProfileIcon/>}
-                    <Flex onClick={(e) => handleMessage(message.sender_kr_name, message.content)} center>
+                    <Flex onClick={(e) => handleMessage(message.sender_kr_name, message.content, message._id)} center>
                         <FavoriteIcon favorites={ favorites[message._id] === "true" ? true : false } onClick={(e) => {
                             e.stopPropagation();
                             handleFavorites(message._id);
                             }}/>
                         <span>{message.sender_kr_name}</span>
                         <span>({message.sender_en_name})</span>
-                        <span className="content">{message.content}</span>
+                        { message.recv_chk ? <span className="content">{message.content}</span> : <span className="content bold">{message.content}</span>}
                     </Flex>
                     <Flex date>
                         <div>{moment(message.createdAt).tz('Asia/Seoul').format("YY.MM.DD h:mm")}</div>

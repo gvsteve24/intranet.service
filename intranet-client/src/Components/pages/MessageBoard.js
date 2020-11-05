@@ -37,7 +37,7 @@ const MessageIcon = styled.div`
     margin: 0 20px;
     cursor: pointer;
 
-    ${ p => p.read && css`
+    ${ p => p.unread && css`
         background: url(${msgImgRed}) center center / 40px 40px no-repeat;
     `};
 `;
@@ -330,10 +330,11 @@ const Modal = styled.div`
     `};
 `;
 
-const MessageModalRead = ({active, readMessage, deactivateMessageModalRead, activateMessageModal}) => {
+const MessageModalRead = ({active, readMessage, passSender, deactivateMessageModalRead, activateMessageModal}) => {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = (data) => {
+        passSender(data.to);
         deactivateMessageModalRead();
         activateMessageModal();
     }
@@ -405,6 +406,7 @@ const MessageModal = ({ active, suggestions, text, onTextChange, suggestionSelec
             onExit={closeModal}
             verticallyCenter={true}
             underlayClickExits={true}
+            initialFocus="#initialFocus"
             dialogStyle={{
                 width: '610px',
                 height: '420px',
@@ -426,8 +428,8 @@ const MessageModal = ({ active, suggestions, text, onTextChange, suggestionSelec
                     <ul className="hidden">
                         {suggestions.map((item, index) => <li key={index} onClick={() => suggestionSelected(item)}><span>{item}</span></li>)}
                     </ul>
-                    <textarea name="content" className="content" placeholder="텍스트를 입력하세요" ref={register({required: true})}/>
-                    { errors.content && <span className="alert">내용을 입력하십시오</span> }
+                    <textarea name="content" className="content" id="initialFocus" placeholder="텍스트를 입력하세요" ref={register({required: true})}/>
+                    { errors.content && <span className="aler t">내용을 입력하십시오</span> }
                     <StyledInput type="submit" value="보내기"/>
                 </form>
         </AriaModal>
@@ -524,7 +526,7 @@ export default function MessageBoard() {
     }
 
     const toggleFavorites = async (id) => {
-        const response = await axios.patch(`http://localhost:3000/messages/${id}`, {}, { headers: authHeader() });
+        const response = await axios.patch(`http://localhost:3000/users?message=${id}`, {}, { headers: authHeader() });
         if(response && response.data){
             const list = response.data.favMessages;
             setFavorites(list);
@@ -585,6 +587,10 @@ export default function MessageBoard() {
         setMessageModalActive(false);
     }
 
+    const updateReadStatus = async (name, content, id) => {
+        await axios.patch(`http://localhost:3000/messages/${id}`, {}, { headers: authHeader() });
+    }
+
     const checkMessage = (sender, content) => {
         activateMessageModalRead();
         setReadMessage({sender, content});
@@ -596,6 +602,7 @@ export default function MessageBoard() {
 
     const deactivateMessageModalRead = () => {
         setMessageModalReadActive(false);
+        window.location.reload();
     }
 
     const onTextChange = (e) => {
@@ -623,6 +630,10 @@ export default function MessageBoard() {
     const suggestionSelected = (value) => {
         setText(value);
         setSuggestions([]);
+    }
+
+    const passSender = (sender) => {
+        setText(sender);
     }
 
     const AlternateLocationAriaModal = AriaModal.renderTo('#profile');
@@ -659,7 +670,7 @@ export default function MessageBoard() {
                     <Logo onClick={handleLogoClick}/>
                     <Modal id="profile">
                         {modal}
-                        <MessageIcon read/>
+                        <MessageIcon unread={false}/>
                         {img64String ? <img alt="avatar" src={img64String} onClick={activateModal}/> : <ProfileIcon onClick={activateModal}/>}
                     </Modal>
                 </Wrapper>
@@ -681,12 +692,12 @@ export default function MessageBoard() {
                         <Button send onClick={activateMessageModal}>쪽지 보내기</Button>
                     </Flex>
                     {caution && <div>{caution}</div>}
-                    {currentUser && <Messages me={currentUser} messages={currentMessages} favorites={favorites} checkMessage={checkMessage} toggleFavorites={(id) => toggleFavorites(id)} loading={loading}/>}
+                    {currentUser && <Messages me={currentUser} messages={currentMessages} favorites={favorites} checkRead={updateReadStatus} checkMessage={checkMessage} toggleFavorites={(id) => toggleFavorites(id)} loading={loading}/>}
                     <Pagination messagesPerPage={messagesPerPage} totalMessages={messages.length} paginate={paginate}/>
                 </Wrapper>
             </div>
             <MessageModal active={messageModalActive} suggestions={suggestions} text={text} onTextChange={onTextChange} suggestionSelected={suggestionSelected} revealSuggestions={revealSuggestions} deactivateMessageModal={deactivateMessageModal}></MessageModal>
-            <MessageModalRead active={messageModalReadActive} readMessage={readMessage} deactivateMessageModalRead={deactivateMessageModalRead} activateMessageModal={activateMessageModal}/>
+            <MessageModalRead active={messageModalReadActive} readMessage={readMessage} passSender={passSender} deactivateMessageModalRead={deactivateMessageModalRead} activateMessageModal={activateMessageModal}/>
         </Container>
     )
 }

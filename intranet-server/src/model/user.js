@@ -100,7 +100,7 @@ userSchema.statics.findByCredential = async (email, password) => {
     if(!isValidPass){
         throw new Error('Unable to login');
     }
-    console.log('method')
+
     return user;
 }
 
