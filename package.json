@@ -9,7 +9,7 @@
     "build": "cd intranet-client && npm install && npm run build"
   },
   "cacheDirectories": [
-    "node_modules",
+    "intranet-cerver/node_modules",
     "intranet-client/node_modules"
   ],
   "repository": {
