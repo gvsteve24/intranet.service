@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link, Route } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import MessageBoard from './pages/MessageBoard'; 

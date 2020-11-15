@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components/macro';
 import moment from 'moment-timezone';
 import profileImg from '../image/profile-default.png';

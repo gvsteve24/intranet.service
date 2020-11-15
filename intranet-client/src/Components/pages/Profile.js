@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import AriaModal from 'react-aria-modal';
 import '../../styles/message.css';
-import logoImg from '../../image/enterphin-white.png'; 
+import logoImg from '../../image/jazoo_logo_white.png'; 
 import msgImg from '../../image/message.png';
 import profileImg from '../../image/profile-default.png';
 
@@ -16,7 +16,7 @@ const Container = styled.div`
 const Header = styled.div`
     width: 100%;
     height: 80px;
-    background-color: #0d334b;
+    background-color: #666;
 `;
 
 const Wrapper = styled.div`
@@ -45,6 +45,11 @@ const Wrapper = styled.div`
     img {
         width: 100px;
         height: 100px;
+    }
+
+    h1 {
+        font-size: 48px;
+        color: #111;
     }
 
     div.content {
@@ -101,7 +106,7 @@ const StyledInput = styled.input`
     height: 40px;
     border: 1px solid #f3f3f3;
     border-radius: 8px;
-    background-color: #0d334b;
+    background-color: #111;
     margin-bottom: 10px;
 
     ::placeholder {
@@ -202,9 +207,7 @@ const Modal = styled.div`
     }
 `;
 
-const UnregisterModal = ({ active, deactivateUnregisterModal, handleUnregister }) => {
-    const history = useHistory();
-
+const UnregisterModal = ({ active, deactivateUnregisterModal, handleUnregister, caution }) => {
     const confirmUnregister = () => {
         handleUnregister();
     }
@@ -236,7 +239,7 @@ const UnregisterModal = ({ active, deactivateUnregisterModal, handleUnregister }
             }}
         >
             <form className="unregister-form">
-                <h3 className="modal-header">정말 회원 탈퇴하시겠습니까?</h3>
+                {caution ? <h3 className="modal-header">{caution}</h3> : <h3 className="modal-header">정말 회원 탈퇴하시겠습니까?</h3>}
                 <StyledInput onClick={closeModal} type="button" value="취소" className="quit-unregister"/>
                 <StyledInput onClick={confirmUnregister}type="button" value="확인"/>
             </form>
@@ -296,7 +299,6 @@ const Profile = () => {
     const AlternateLocationAriaModal = AriaModal.renderTo('#profile');
 
     const handleMessage = () => {
-        console.log('going to message')
         history.push('/messages');
     }
 
@@ -336,6 +338,7 @@ const Profile = () => {
         }catch(error){
             const resMessage = (error.response && error.response.data && error.reponse.data.message ) || error.message || error.toString();
             setCaution(resMessage);
+            setUnregisterModalActive(true);
         }
     };
     
@@ -409,7 +412,7 @@ const Profile = () => {
                     <div><StyledInput onClick={activateUnregisterModal} type="button" value="회원탈퇴" half gray/></div>
                 </Wrapper>
             </div>
-            <UnregisterModal active={unregisterModalActive} deactivateUnregisterModal={deactivateUnregisterModal} handleUnregister={handleUnregister}/>
+            <UnregisterModal active={unregisterModalActive} deactivateUnregisterModal={deactivateUnregisterModal} handleUnregister={handleUnregister} caution={caution}/>
         </Container>
     )
 }

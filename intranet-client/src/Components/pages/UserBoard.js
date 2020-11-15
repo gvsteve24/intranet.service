@@ -6,7 +6,7 @@ import Users from '../Users';
 import styled, { css } from 'styled-components/macro';
 import chevronDown from '../../image/chevron-down-black.png';
 import zoom from '../../image/zoom.png';
-import logoImg from '../../image/enterphin-white.png'; 
+import logoImg from '../../image/jazoo_logo_white.png'; 
 import msgImg from '../../image/message.png';
 import profileImg from '../../image/profile-default.png';
 import { useHistory } from 'react-router-dom';
@@ -47,7 +47,7 @@ const Container = styled.div`
 const Header = styled.div`
     width: 100%;
     height: 80px;
-    background-color: #0D334B;
+    background-color: #666;
 `;
 
 const Wrapper = styled.div`
@@ -64,7 +64,7 @@ const Wrapper = styled.div`
 
     h1 {
         font-size: 48px;
-        color: #0d334b;
+        color: #111;
     }
 
     select {
@@ -376,7 +376,7 @@ export default function UserBoard() {
                     <h1>조직원 정보</h1>
                     <Flex>
                         <select onChange={filterUser} name="category" required>
-                            <option value="" selected>선택하세요</option>
+                            <option defaultValue="">선택하세요</option>
                             <option value="즐겨찾기">즐겨찾기</option>
                             <option value="연구소">연구소</option>
                             <option value="사업부">사업부</option>

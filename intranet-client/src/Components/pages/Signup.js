@@ -2,11 +2,11 @@ import React from 'react';
 import Register from '../Register';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import logoImg from '../../image/enterphin.png'; 
+import logoImg from '../../image/rsz_jazoo_logo.png'; 
 
 const Logo = styled.div`
     width: 426px;
-    height: 80px;
+    height: 120px;
     background-image: url(${logoImg});
     background-size: cover;
     background-position: center;

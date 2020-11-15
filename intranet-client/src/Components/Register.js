@@ -12,7 +12,7 @@ const FormContainer = styled.div`
     color: #fff;
     display: flex;
     flex-flow: column;
-    background-color: #0d334b;
+    background-color: #443E52;
     box-sizing: border-box;
     width: 520px;
     height: 710px;
@@ -53,7 +53,7 @@ const FormContainer = styled.div`
         height: 40px;
         border: 1px solid #f3f3f3;
         border-radius: 5px;
-        background-color: #0d334b;
+        background-color: #443E52;
         padding: 8px 11px;
         margin-bottom: 10px;
         font-size: 14px;
@@ -97,7 +97,7 @@ const StyledInput = styled.input`
     height: 40px;
     border: 1px solid #f3f3f3;
     border-radius: 5px;
-    background-color: #0d334b;
+    background-color: #443E52;
     padding: 12px;
     margin-bottom: 10px;
 
@@ -118,7 +118,7 @@ const StyledInput = styled.input`
 
 const Submit = styled.input.attrs({type: 'submit'})`
     font-size: 18px;
-    color: #0d334b;
+    color: #443E52;
     font-weight: 600;
     line-height: 18px;
     width: 300px;

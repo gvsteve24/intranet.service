@@ -11,19 +11,20 @@ const Button = styled.button`
     width: 300px;
     height: 50px;
     padding: 15px 117px;
-    background-color: #0d334b;
+    background-color: #666;
     border: 2px solid #fff;
     border-radius: 5px;
     font-size: 18px;
     font-weight: 600;
     line-height: 18px;
     letter-spacing: -0.06em;
+    cursor: pointer;
 
     ${props => 
         props.primary && 
         css`
             background-color: #fff;
-            color: #0d334b;
+            color: #443E52;
         `};
 `;
 
@@ -33,7 +34,7 @@ const FormContainer = styled.div`
     color: #fff;
     display: flex;
     flex-flow: column;
-    background-color: #0d334b;
+    background-color: #666;
     box-sizing: border-box;
     width: 520px;
     height: 710px;
@@ -60,9 +61,10 @@ const FormContainer = styled.div`
         height: 40px;
         border: 1px solid #f3f3f3;
         border-radius: 5px;
-        background-color: #0d334b;
+        background-color: #666;
         padding: 12px;
         margin-bottom: 10px;
+        cursor: pointer;
     }
 
     input::placeholder {
@@ -85,7 +87,7 @@ const FormContainer = styled.div`
 
     input[type=submit] {
         font-size: 18px;
-        color: #0d334b;
+        color: #666;
         font-weight: 600;
         line-height: 18px;
         width: 300px;
@@ -115,11 +117,14 @@ const FormContainer = styled.div`
         margin: 0 -10px 0 0;
     }
 
-    a {
+    .renew-password {
+        border-style: none;
+        background-color: #666;
         color: #fff;
         font-size: 14px;
         text-decoration-line: underline;
         text-decoration-color: #fff;
+        cursor: pointer;
     }
 
     div {
@@ -174,9 +179,9 @@ export default function Login(props) {
                     <input type="submit" value="로그인"/>
                     {caution && (<div>{caution}</div>)}
                 </form>
-                <span><a href="#">비밀번호를 잊으셨나요?</a></span>
+                <span><button className="renew-password">비밀번호를 잊으셨나요?</button></span>
                 <Button onClick={handleClick}>회원가입</Button>
-                <div><p>Copyright ⓒ 2020 Enterphin All Rights Reserved</p></div>
+                <div><p>Copyright ⓒ 2020 JAZOO All Rights Reserved</p></div>
             </FormContainer>
         </Router>
     )

@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import AriaModal from 'react-aria-modal';
-import logoImg from '../../image/enterphin-white.png'; 
+import logoImg from '../../image/jazoo_logo_white.png'; 
 import msgImg from '../../image/message.png';
 import profileImg from '../../image/profile-default.png';
 
@@ -16,7 +16,7 @@ const Container = styled.div`
 const Header = styled.div`
     width: 100%;
     height: 80px;
-    background-color: #0d334b;
+    background-color: #666;
 `;
 
 const Wrapper = styled.div`
@@ -44,7 +44,7 @@ const Wrapper = styled.div`
 
     h1 {
         font-size: 48px;
-        color: #0d334b;
+        color: #111;
     }
 
     div.content {
@@ -141,7 +141,7 @@ const StyledInput = styled.input`
     height: 40px;
     border: 1px solid #808080;
     border-radius: 8px;
-    background-color: #0d334b;
+    background-color: #111;
     padding: 12px;
     margin-bottom: 10px;
 
@@ -174,6 +174,16 @@ const StyledInput = styled.input`
 const Modal = styled.div`
     font-family: 'NanumSquare', sans-serif;
     
+    img {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin: 0 20px;
+        position: relative;
+        cursor: pointer;
+    }
+    
     .modal {
         position: absolute;
         top: 65px;
@@ -205,7 +215,7 @@ const Modal = styled.div`
 `;
 
 const ChangePass = () => {
-    const [ currentUser, setCurrentUser ] = useState(false);
+    const [ img64String, setImg64String ] = useState('');
     const [ modalActive, setModalActive ] = useState(false);
     const { register, handleSubmit, errors, watch } = useForm();
     const history = useHistory();
@@ -223,14 +233,26 @@ const ChangePass = () => {
         const sessionUser = () => {
             const user = JSON.parse(localStorage.getItem("user"));
             if(user && user.token){
-                setCurrentUser(true);
                 return user;
             }else {
                 return undefined;
             }    
         }
 
-        sessionUser();
+        const user = sessionUser();
+        
+        if(user.user && user.user.avatar) {
+            let TYPED_ARRAY = new Uint8Array(user.user.avatar.data);
+    
+            const STRING_CHAR = TYPED_ARRAY.reduce((data, byte) => {
+                return data + String.fromCharCode(byte);
+            }, '');
+    
+            let base64String = btoa(STRING_CHAR);
+    
+            let formatString = `data:image/png;base64, ${base64String}`;
+            setImg64String(formatString);
+        }
     }, []);
         
     const onSubmit = async (data) => {
@@ -266,7 +288,6 @@ const ChangePass = () => {
     
     const handleLogout = () => {
         localStorage.removeItem("user");
-        setCurrentUser(false);
         history.push('/');
     }
 
@@ -297,7 +318,7 @@ const ChangePass = () => {
                     <Modal id="profile">
                         {modal}
                         <MessageIcon onClick={handleMessage}/>
-                        <ProfileIcon onClick={activateModal}/>
+                        {img64String ? <img alt="avatar" src={img64String} onClick={activateModal}/> : <ProfileIcon onClick={activateModal}/>}
                     </Modal>
                 </Wrapper>
             </Header>

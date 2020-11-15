@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import { useForm } from 'react-hook-form';
 import AriaModal from 'react-aria-modal';
-import logoImg from '../../image/enterphin-white.png'; 
+import logoImg from '../../image/jazoo_logo_white.png'; 
 import msgImg from '../../image/message.png';
 import chevronDown from '../../image/chevron-down-black.png';
 import profileImg from '../../image/profile-default.png';
@@ -18,7 +18,7 @@ const Container = styled.div`
 const Header = styled.div`
     width: 100%;
     height: 80px;
-    background-color: #0d334b;
+    background-color: #666;
 `;
 
 const Wrapper = styled.div`
@@ -161,7 +161,7 @@ const Wrapper = styled.div`
 
     h1 {
         font-size: 48px;
-        color: #0d334b;
+        color: #111;
     }
 
     select {
@@ -228,7 +228,7 @@ const StyledInput = styled.input`
     height: 40px;
     border: 1px solid #f3f3f3;
     border-radius: 8px;
-    background-color: #0d334b;
+    background-color: #111;
     padding: 12px;
     margin-bottom: 10px;
 

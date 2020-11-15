@@ -8,7 +8,7 @@ import Messages from '../Messages';
 import Pagination from '../Pagination';
 import '../../styles/message.css';
 import styled, { css } from 'styled-components/macro';
-import logoImg from '../../image/enterphin-white.png';
+import logoImg from '../../image/jazoo_logo_white.png';
 import msgImg from '../../image/message.png';
 import msgImgRed from '../../image/message-read.png';
 import chevronDown from '../../image/chevron-down-black.png';
@@ -59,7 +59,7 @@ const Button = styled.button`
     width: 300px;
     height: 50px;
     padding: 10px 27px;
-    background-color: #0d334b;
+    background-color: #111;
     border: 2px solid #fff;
     border-radius: 5px;
     font-size: 18px;
@@ -86,7 +86,7 @@ const Button = styled.button`
 const Header = styled.div`
     width: 100%;
     height: 80px;
-    background-color: #0d334b;
+    background-color: #666;
 `;
 
 const Wrapper = styled.div`
@@ -103,7 +103,7 @@ const Wrapper = styled.div`
 
     h1 {
         font-size: 48px;
-        color: #0d334b;
+        color: #111;
     }
 
     select {
@@ -602,7 +602,7 @@ export default function MessageBoard() {
 
     const deactivateMessageModalRead = () => {
         setMessageModalReadActive(false);
-        window.location.reload();
+        // window.location.reload();                // this one gotta be alternative method to update read/unread message
     }
 
     const onTextChange = (e) => {
