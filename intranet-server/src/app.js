@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(userRouter);
 app.use(messageRouter);
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/../../intranet-client/build', 'index.html'));
 });
 

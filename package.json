@@ -1,0 +1,24 @@
+{
+  "name": "intranet-service",
+  "version": "1.0.0",
+  "description": "intranet pilot project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd intranet-client && npm install && npm run build"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "intranet-client/node_modules"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gvsteve24/intranet.service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gvsteve24/intranet.service/issues"
+  },
+  "homepage": "https://github.com/gvsteve24/intranet.service#readme"
+}
