@@ -6,7 +6,7 @@ const messageRouter = require('./routes/message');
 const app = express();
 const port = 3000 || process.env.port;
 
-const publicDirectory = path.join(__dirname, '../public');
+const publicDirectory = path.join(__dirname, '../../intranet-client/build');
 
 app.use(express.static(publicDirectory));
 app.use(express.json());
