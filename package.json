@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node intranet-server/src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "cd intranet-client && yarn install && yarn run build"
+    "build": "cd intranet-client && npm install && npm run build"
   },
   "cacheDirectories": [
     "node_modules",
