@@ -14,7 +14,7 @@ app.use(userRouter);
 app.use(messageRouter);
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.sendFile(path.join(__dirname, '/../../intranet-client/build', 'index.html'));
 });
 
 app.listen(port, () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, HashRouter } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import Home from './Components/pages/Home';
 import Signup from './Components/pages/Signup';
 import UserBoard from './Components/pages/UserBoard';
@@ -15,7 +15,7 @@ library.add(faArrowCircleUp);
 
 function App() {
   return (
-    <HashRouter>
+    <Router>
       <Switch>
         <Route exact path="/"><Home/></Route>
         <Route path="/register"><Signup/></Route>
@@ -25,7 +25,7 @@ function App() {
         <Route path="/updateInfo"><UpdateInfo/></Route>
         <Route path="/changePass"><ChangePass/></Route>
       </Switch>
-    </HashRouter>
+    </Router>
   );
 }
 
