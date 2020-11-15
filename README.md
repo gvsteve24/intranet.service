@@ -1,2 +1,2 @@
-# enterphin.intranet
+# intranet.service
 intranet pilot project
