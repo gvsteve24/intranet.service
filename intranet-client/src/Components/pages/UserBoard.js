@@ -11,6 +11,7 @@ import msgImg from '../../image/message.png';
 import profileImg from '../../image/profile-default.png';
 import { useHistory } from 'react-router-dom';
 
+const prodURL = 'https://gvsteve24-intranet-service.herokuapp.com';
 const Logo = styled.div`
     width: 160px;
     height: 30px;
@@ -231,13 +232,13 @@ export default function UserBoard() {
     const fetchUsers = async (criteria, term) => {
         try {
             if(!criteria && !term){
-                const response = await axios.get(`http://localhost:3000/users`, {headers: authHeader()});
+                const response = await axios.get(`${prodURL}/users`, {headers: authHeader()});
 
                 setUser(response.data);
 
                 return response.data;
             }else {
-                const response = await axios.get(`http://localhost:3000/users?${criteria}=${term}`, {headers: authHeader()});
+                const response = await axios.get(`${prodURL}/users?${criteria}=${term}`, {headers: authHeader()});
                 
                 setUser(response.data);
 
@@ -352,7 +353,7 @@ export default function UserBoard() {
         :false;
 
     const setFavorite = async (id) => {
-        const response = await axios.patch(`http://localhost:3000/users/${id}`, {}, {headers: authHeader()});
+        const response = await axios.patch(`${prodURL}/users/${id}`, {}, {headers: authHeader()});
         if(response && response.data){
             const user = response.data;
             setFavorites(user.favorites);

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import styled, { css } from 'styled-components/macro';
 
+const prodURL = 'https://gvsteve24-intranet-service.herokuapp.com';
 const Button = styled.button`
     font-family: 'NanumSquare', sans-serif;
     color: #fff;
@@ -149,7 +150,7 @@ export default function Login(props) {
     
     const onSubmit = async data => {
         try{
-            const response = await axios.post('http://localhost:3000/users/login', data);
+            const response = await axios.post(`${prodURL}/users/login`, data);
             
             if(response.data && response.data.token){
                 localStorage.setItem("user", JSON.stringify(response.data));

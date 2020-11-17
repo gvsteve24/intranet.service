@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import img from '../image/chevron-down@2x.png';
 
+const prodURL = 'https://gvsteve24-intranet-service.herokuapp.com';
+
 const FormContainer = styled.div`
     font-family: 'NanumSquare', sans-serif;
     font-size: 18px;  
@@ -141,7 +143,7 @@ export default function Register() {
         data.phone = `${data.phone0}-${data.phone1}-${data.phone2}`;
         data.favorites = {};
 
-        const response = await axios.post('http://localhost:3000/users/register', data);
+        const response = await axios.post(`${prodURL}/users/register`, data);
 
         if( response && response.data){
             if(localStorage.getItem("user")){

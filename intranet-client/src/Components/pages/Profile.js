@@ -8,6 +8,8 @@ import logoImg from '../../image/jazoo_logo_white.png';
 import msgImg from '../../image/message.png';
 import profileImg from '../../image/profile-default.png';
 
+const prodURL = 'https://gvsteve24-intranet-service.herokuapp.com';
+
 const Container = styled.div`
     width: 100vw;
     height: 100vh;
@@ -328,7 +330,7 @@ const Profile = () => {
 
     const handleUnregister = async () => {
         try{
-            const response = await axios.delete('http://localhost:3000/users/me', {headers: authHeader()});
+            const response = await axios.delete(`${prodURL}/users/me`, {headers: authHeader()});
 
             if(response && response.data){
                 setUnregisterModalActive(false);

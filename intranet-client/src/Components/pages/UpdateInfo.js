@@ -10,6 +10,8 @@ import chevronDown from '../../image/chevron-down-black.png';
 import profileImg from '../../image/profile-default.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+const prodURL = 'https://gvsteve24-intranet-service.herokuapp.com';
+
 const Container = styled.div`
     width: 100vw;
     height: 100vh;
@@ -326,7 +328,7 @@ const UpdateInfo = () => {
         if(data.address)    formData.append("address", data.address);
         if(data.phone0 && data.phone1 && data.phone2)    formData.append("phone", `${data.phone0}-${data.phone1}-${data.phone2}`);
 
-        const response = await axios.patch('http://localhost:3000/users/info', formData, {headers: authHeader()});
+        const response = await axios.patch(`${prodURL}/users/info`, formData, {headers: authHeader()});
         if(response && response.errors){
             alert(`${response.errors}:${response.message}`)
         }else if(response && response.data){

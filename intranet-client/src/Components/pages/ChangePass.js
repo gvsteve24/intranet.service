@@ -8,6 +8,8 @@ import logoImg from '../../image/jazoo_logo_white.png';
 import msgImg from '../../image/message.png';
 import profileImg from '../../image/profile-default.png';
 
+const prodURL = 'https://gvsteve24-intranet-service.herokuapp.com';
+
 const Container = styled.div`
     width: 100vw;
     height: 100vh;
@@ -256,7 +258,7 @@ const ChangePass = () => {
     }, []);
         
     const onSubmit = async (data) => {
-        const response = await axios.patch('http://localhost:3000/users/password', data, { headers: authHeader() });
+        const response = await axios.patch(`${prodURL}/users/password`, data, { headers: authHeader() });
 
         if(response && response.data){
             window.alert(`Password changed (hashed: ${response.data.password})`);
