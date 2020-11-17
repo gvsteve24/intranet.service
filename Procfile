@@ -1,0 +1,1 @@
+web: node intranet-server/src/app.js
