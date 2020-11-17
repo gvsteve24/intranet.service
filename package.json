@@ -6,8 +6,11 @@
   "scripts": {
     "start": "node intranet-server/src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd intranet-client && npm install && npm run build"
+    "build": "concurrently \"cd intranet-client && npm install && npm run build\" \"cd intranet-server && npm install\""
   },
+  "keywords": [
+    "heroku"
+  ],
   "cacheDirectories": [
     "node_modules",
     "intranet-cerver/node_modules",
@@ -23,5 +26,11 @@
     "url": "https://github.com/gvsteve24/intranet.service/issues"
   },
   "homepage": "https://github.com/gvsteve24/intranet.service#readme",
-  "dependencies": {}
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "express": "^4.17.1"
+  },
+  "engines": {
+    "node": "12.x"
+  }
 }
