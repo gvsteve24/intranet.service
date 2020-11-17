@@ -1,2 +1,3 @@
-heroku-cra-node
 node_modules
+config
+src/test.js

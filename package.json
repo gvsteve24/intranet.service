@@ -1,36 +1,45 @@
 {
-  "name": "intranet-service",
+  "name": "gvsteve24-intranet-service",
   "version": "1.0.0",
-  "description": "intranet pilot project",
-  "main": "index.js",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment-timezone": "^0.5.31",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.25",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "sharp": "^0.25.4",
+    "validator": "^13.1.1"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.4"
+  },
   "scripts": {
-    "start": "node intranet-server/src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "concurrently \"cd intranet-client && npm install && npm run build\" \"cd intranet-server && npm install\""
+    "start": "node src/app.js",
+    "dev": "env-cmd -f ./config/dev.env nodemon src/app.js",
+    "build": "cd intranet-client && yarn install && yarn run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "heroku"
+    "node",
+    "heroku",
+    "create-react-app",
+    "react"
   ],
   "cacheDirectories": [
     "node_modules",
-    "intranet-cerver/node_modules",
     "intranet-client/node_modules"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gvsteve24/intranet.service.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gvsteve24/intranet.service/issues"
-  },
-  "homepage": "https://github.com/gvsteve24/intranet.service#readme",
-  "dependencies": {
-    "concurrently": "^5.3.0",
-    "express": "^4.17.1"
-  },
   "engines": {
     "node": "12.x"
-  }
+  },
+  "author": "",
+  "license": "ISC"
 }

@@ -8,12 +8,11 @@ const messageRouter = require('./routes/message');
 const app = express();
 const dev = app.get('env') !== 'production';
 
-const buildDirectory = path.join(__dirname, '../../intranet-client/build');
+const buildDirectory = path.join(__dirname, '../intranet-client/build');
 const normalizePort = port => parseInt(port, 10);
 const port = normalizePort(process.env.port || 3000);
 
 if(!dev){
-
     app.disable('x-powered-by');
     app.use(compression());
     app.use(morgan('common'));
@@ -24,7 +23,7 @@ if(!dev){
     app.use(messageRouter);
     
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '/../../intranet-client/build', 'index.html'));
+        res.sendFile(path.join(__dirname, '../intranet-client/build', 'index.html'));
     });
 }
 
@@ -34,6 +33,11 @@ if(dev){
     app.use(userRouter);
     app.use(messageRouter);
 }
+
+app.get('/', function (req, res) {
+    res.set('Content-Type', 'application/json');
+    res.send('{"message":"Hello from the custom server!"}');
+});
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
