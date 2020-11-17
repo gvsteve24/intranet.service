@@ -29,14 +29,14 @@ if(!dev){
 
 if(dev){
     app.use(morgan('dev'));
+    app.use(express.static(buildDirectory));
     app.use(express.json());
     app.use(userRouter);
     app.use(messageRouter);
 }
 
-app.get('/', function (req, res) {
-    res.set('Content-Type', 'application/json');
-    res.send('{"message":"Hello from the custom server!"}');
+app.get('/', function (req, res, next) {
+    res.render('index');
 });
 
 app.listen(port, () => {
