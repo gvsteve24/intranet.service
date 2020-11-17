@@ -4,7 +4,7 @@ import validator from 'validator';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
-import img from '../image/chevron-down@2x.png';
+import img from '../image/chevron-down-solid.svg';
 
 const prodURL = 'https://gvsteve24-intranet-service.herokuapp.com';
 
@@ -14,7 +14,7 @@ const FormContainer = styled.div`
     color: #fff;
     display: flex;
     flex-flow: column;
-    background-color: #443E52;
+    background-color: #666;
     box-sizing: border-box;
     width: 520px;
     height: 710px;
@@ -55,7 +55,7 @@ const FormContainer = styled.div`
         height: 40px;
         border: 1px solid #f3f3f3;
         border-radius: 5px;
-        background-color: #443E52;
+        background-color: #666;
         padding: 8px 11px;
         margin-bottom: 10px;
         font-size: 14px;
@@ -99,7 +99,7 @@ const StyledInput = styled.input`
     height: 40px;
     border: 1px solid #f3f3f3;
     border-radius: 5px;
-    background-color: #443E52;
+    background-color: #666;
     padding: 12px;
     margin-bottom: 10px;
 
