@@ -10,7 +10,7 @@ const dev = app.get('env') !== 'production';
 
 const buildDirectory = path.join(__dirname, '../intranet-client/build');
 const normalizePort = port => parseInt(port, 10);
-const port = normalizePort(process.env.port || 3000);
+const port = normalizePort(process.env.PORT || 3000);
 
 if(!dev){
     app.disable('x-powered-by');
