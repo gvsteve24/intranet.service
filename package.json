@@ -24,7 +24,7 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "env-cmd -f ./config/dev.env nodemon src/app.js",
-    "build": "cd intranet-client && yarn install && yarn run build",
+    "build": "cd intranet-client && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
