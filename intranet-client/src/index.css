@@ -1,16 +1,27 @@
 body {
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
 }
 
 #root {
-  height: 100vh;
-  display: flex;
-  align-items: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
 }
 
 #text {
     display: none;
+}
+
+.App {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 15rem 0 15rem;
+    box-sizing: border-box;
+}
+
+.App>a {
+    width: 30.5rem;
 }

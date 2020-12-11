@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Config from '../../config';
 import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import AriaModal from 'react-aria-modal';
-import logoImg from '../../image/jazoo_logo_white.png'; 
+import logoImg from '../../image/jazoo_logo_white.png';
 import msgImg from '../../image/message.png';
 import profileImg from '../../image/profile-default.png';
 
-const prodURL = 'https://gvsteve24-intranet-service.herokuapp.com';
-
-const Container = styled.div`
+const Container = styled.div `
     width: 100vw;
     height: 100vh;
 `;
 
-const Header = styled.div`
+const Header = styled.div `
     width: 100%;
     height: 80px;
     background-color: #666;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div `
     width: 1000px;
     height: 100%;
     margin: 0 auto;
@@ -258,7 +257,7 @@ const ChangePass = () => {
     }, []);
         
     const onSubmit = async (data) => {
-        const response = await axios.patch(`${prodURL}/users/password`, data, { headers: authHeader() });
+        const response = await axios.patch(`${Config.ORIGIN}/users/password`, data, { headers: authHeader() });
 
         if(response && response.data){
             window.alert(`Password changed (hashed: ${response.data.password})`);

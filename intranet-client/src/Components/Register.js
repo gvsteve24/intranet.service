@@ -1,12 +1,11 @@
 import React from 'react';
 import axios from 'axios';
+import Config from '../config';
 import validator from 'validator';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import img from '../image/chevron-down-solid.svg';
-
-const prodURL = 'https://gvsteve24-intranet-service.herokuapp.com';
 
 const FormContainer = styled.div`
     font-family: 'NanumSquare', sans-serif;
@@ -143,7 +142,7 @@ export default function Register() {
         data.phone = `${data.phone0}-${data.phone1}-${data.phone2}`;
         data.favorites = {};
 
-        const response = await axios.post(`${prodURL}/users/register`, data);
+        const response = await axios.post(`${Config.ORIGIN}/users/register`, data);
 
         if( response && response.data){
             if(localStorage.getItem("user")){

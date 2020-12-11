@@ -1,8 +1,0 @@
-.App {
-  min-width: calc(100vw - 824px);
-  height: calc(100vh - 370px);
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin: 0 auto;
-}

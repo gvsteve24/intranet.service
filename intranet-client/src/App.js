@@ -7,7 +7,6 @@ import MessageBoard from './Components/pages/MessageBoard';
 import Profile from './Components/pages/Profile';
 import UpdateInfo from './Components/pages/UpdateInfo';
 import ChangePass from './Components/pages/ChangePass';
-import './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowCircleUp } from '@fortawesome/free-solid-svg-icons';
 

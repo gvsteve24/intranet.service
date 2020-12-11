@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Config from '../../config';
 import { Link, useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import { useForm } from 'react-hook-form';
 import AriaModal from 'react-aria-modal';
-import logoImg from '../../image/jazoo_logo_white.png'; 
+import logoImg from '../../image/jazoo_logo_white.png';
 import msgImg from '../../image/message.png';
 import chevronDown from '../../image/chevron-down-black.png';
 import profileImg from '../../image/profile-default.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const prodURL = 'https://gvsteve24-intranet-service.herokuapp.com';
-
-const Container = styled.div`
+const Container = styled.div `
     width: 100vw;
     height: 100vh;
 `;
 
-const Header = styled.div`
+const Header = styled.div `
     width: 100%;
     height: 80px;
     background-color: #666;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div `
     width: 1000px;
     height: 100%;
     margin: 0 auto;
@@ -328,7 +327,7 @@ const UpdateInfo = () => {
         if(data.address)    formData.append("address", data.address);
         if(data.phone0 && data.phone1 && data.phone2)    formData.append("phone", `${data.phone0}-${data.phone1}-${data.phone2}`);
 
-        const response = await axios.patch(`${prodURL}/users/info`, formData, {headers: authHeader()});
+        const response = await axios.patch(`${Config.ORIGIN}/users/info`, formData, {headers: authHeader()});
         if(response && response.errors){
             alert(`${response.errors}:${response.message}`)
         }else if(response && response.data){

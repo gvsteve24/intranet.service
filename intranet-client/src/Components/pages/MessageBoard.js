@@ -2,6 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import Config from '../../config';
 import AriaModal from 'react-aria-modal';
 import { authHeader } from '../../service/auth';
 import Messages from '../Messages';
@@ -15,14 +16,12 @@ import chevronDown from '../../image/chevron-down-black.png';
 import zoom from '../../image/zoom.png';
 import profileImg from '../../image/profile-default.png';
 
-const prodURL = 'https://gvsteve24-intranet-service.herokuapp.com';
-
-const Container = styled.div`
+const Container = styled.div `
     width: 100vw;
     height: 100vh;
 `;
 
-const Logo = styled.div`
+const Logo = styled.div `
     width: 160px;
     height: 30px;
     background-image: url(${logoImg});
@@ -31,7 +30,7 @@ const Logo = styled.div`
     cursor: pointer;
 `;
 
-const MessageIcon = styled.div`
+const MessageIcon = styled.div `
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -381,7 +380,7 @@ const MessageModal = ({ active, suggestions, text, onTextChange, suggestionSelec
     const onSubmit = async data => {
         data.to = data.to.split('(')[0];
 
-        const response = await axios.post(`${prodURL}/messages`, data, {headers: authHeader()});
+        const response = await axios.post(`${Config.ORIGIN}/messages`, data, {headers: authHeader()});
 
         if(response && response.data){
             closeModal();
@@ -462,13 +461,13 @@ export default function MessageBoard() {
         try {
             if(term && typeof term === "string"){
                 setLoading(true);
-                const response = await axios.get(`${prodURL}/messages?${criteria}=${term}`, {headers: authHeader()});
+                const response = await axios.get(`${Config.ORIGIN}/messages?${criteria}=${term}`, {headers: authHeader()});
 
                 setMessages(response.data);
                 setLoading(false);
             }else{
                 setLoading(true);
-                const response = await axios.get(`${prodURL}/messages`, {headers: authHeader()});
+                const response = await axios.get(`${Config.ORIGIN}/messages`, {headers: authHeader()});
                 setMessages(response.data);
                 setLoading(false);
             }
@@ -482,7 +481,7 @@ export default function MessageBoard() {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get(`${prodURL}/users`, {headers: authHeader()});
+            const response = await axios.get(`${Config.ORIGIN}/users`, {headers: authHeader()});
             setUser(response.data);
             
         } catch (error) {
@@ -528,7 +527,7 @@ export default function MessageBoard() {
     }
 
     const toggleFavorites = async (id) => {
-        const response = await axios.patch(`${prodURL}/users?message=${id}`, {}, { headers: authHeader() });
+        const response = await axios.patch(`${Config.ORIGIN}/users?message=${id}`, {}, { headers: authHeader() });
         if(response && response.data){
             const list = response.data.favMessages;
             setFavorites(list);
@@ -590,7 +589,7 @@ export default function MessageBoard() {
     }
 
     const updateReadStatus = async (name, content, id) => {
-        await axios.patch(`${prodURL}}/messages/${id}`, {}, { headers: authHeader() });
+        await axios.patch(`${Config.ORIGIN}/messages/${id}`, {}, { headers: authHeader() });
     }
 
     const checkMessage = (sender, content) => {

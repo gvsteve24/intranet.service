@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useForm } from 'react-hook-form';
-import AriaModal from 'react-aria-modal';
-import Users from '../Users';
 import styled, { css } from 'styled-components/macro';
+import Config from '../../config';
+import axios from 'axios';
+import AriaModal from 'react-aria-modal';
+import { useForm } from 'react-hook-form';
+import Users from '../Users';
 import chevronDown from '../../image/chevron-down-black.png';
 import zoom from '../../image/zoom.png';
-import logoImg from '../../image/jazoo_logo_white.png'; 
+import logoImg from '../../image/jazoo_logo_white.png';
 import msgImg from '../../image/message.png';
 import profileImg from '../../image/profile-default.png';
 import { useHistory } from 'react-router-dom';
 
-const prodURL = 'https://gvsteve24-intranet-service.herokuapp.com';
-const Logo = styled.div`
+const Logo = styled.div `
     width: 160px;
     height: 30px;
     background-image: url(${logoImg});
@@ -21,7 +21,7 @@ const Logo = styled.div`
     cursor: pointer;
 `;
 
-const MessageIcon = styled.div`
+const MessageIcon = styled.div `
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -30,7 +30,7 @@ const MessageIcon = styled.div`
     cursor: pointer;
 `;
 
-const ProfileIcon = styled.div`
+const ProfileIcon = styled.div `
     display: inline-block;
     width: 50px;
     height: 50px;
@@ -40,18 +40,18 @@ const ProfileIcon = styled.div`
     cursor: pointer;
 `;
 
-const Container = styled.div`
+const Container = styled.div `
     width: 100vw;
     height: 100vh;
 `;
 
-const Header = styled.div`
+const Header = styled.div `
     width: 100%;
     height: 80px;
     background-color: #666;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div `
     width: 1000px;
     height: 100%;
     margin: 0 auto;
@@ -232,13 +232,13 @@ export default function UserBoard() {
     const fetchUsers = async (criteria, term) => {
         try {
             if(!criteria && !term){
-                const response = await axios.get(`${prodURL}/users`, {headers: authHeader()});
+                const response = await axios.get(`${Config.ORIGIN}/users`, {headers: authHeader()});
 
                 setUser(response.data);
 
                 return response.data;
             }else {
-                const response = await axios.get(`${prodURL}/users?${criteria}=${term}`, {headers: authHeader()});
+                const response = await axios.get(`${Config.ORIGIN}/users?${criteria}=${term}`, {headers: authHeader()});
                 
                 setUser(response.data);
 
@@ -353,7 +353,7 @@ export default function UserBoard() {
         :false;
 
     const setFavorite = async (id) => {
-        const response = await axios.patch(`${prodURL}/users/${id}`, {}, {headers: authHeader()});
+        const response = await axios.patch(`${Config.ORIGIN}/users/${id}`, {}, {headers: authHeader()});
         if(response && response.data){
             const user = response.data;
             setFavorites(user.favorites);
