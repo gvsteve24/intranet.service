@@ -3,7 +3,7 @@ const dev = {
 };
 
 const prod = {
-    ORIGIN: 'https://steve24-intranet-service.herokuapp.com'
+    ORIGIN: 'https://gvsteve24-intranet-service.herokuapp.com'
 };
 
 const config = process.env.REACT_APP_STAGE === 'production' ? prod : dev;
