@@ -4,7 +4,7 @@ const { User } = require('../model/user');
 const auth = async (req, res, next) => {
     try {
         res.header('Access-Control-Allow-Origin', '*');
-        res.header('Access-Control-Allow-Header', 'Origin, X-Requested-With, Content-Type, Accept');
+        res.header('Access-Control-Allow-Header', 'Content-Type');
         res.header('Access-Control-Allow-Header', 'Authorization');
         const token = req.header('Authorization').replace('Bearer ','');
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
