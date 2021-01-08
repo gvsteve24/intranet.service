@@ -13,19 +13,19 @@ import { faArrowCircleUp } from '@fortawesome/free-solid-svg-icons';
 library.add(faArrowCircleUp);
 
 function App() {
-  return (
-    <Router>
-      <Switch>
-        <Route exact path="/"><Home/></Route>
-        <Route path="/register"><Signup/></Route>
-        <Route path="/users"><UserBoard/></Route>
-        <Route path="/messages"><MessageBoard/></Route>
-        <Route path="/profile"><Profile/></Route>
-        <Route path="/updateInfo"><UpdateInfo/></Route>
-        <Route path="/changePass"><ChangePass/></Route>
-      </Switch>
-    </Router>
-  );
+    return (
+        <Router>
+        <Switch>
+            <Route exact path="/"><Home/></Route>
+            <Route path="/register"><Signup/></Route>
+            <Route path="/users"><UserBoard/></Route>
+            <Route path="/messages"><MessageBoard/></Route>
+            <Route path="/profile"><Profile/></Route>
+            <Route path="/updateInfo"><UpdateInfo/></Route>
+            <Route path="/changePass"><ChangePass/></Route>
+        </Switch>
+        </Router>
+    );
 }
 
 export default App;
