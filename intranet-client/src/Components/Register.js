@@ -141,6 +141,7 @@ export default function Register() {
     const onSubmit = async (data) => {
         data.phone = `${data.phone0}-${data.phone1}-${data.phone2}`;
         data.favorites = {};
+        delete data.passwordConfirm;
 
         const response = await axios.post(`${Config.ORIGIN}/users/register`, data);
 
