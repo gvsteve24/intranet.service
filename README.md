@@ -5,6 +5,7 @@ visit demo website!
 https://gvsteve24-intranet-service.herokuapp.com
 
 id: admin@admin.com
+
 password: admin
 
 * Try sending message to other available user, test!
