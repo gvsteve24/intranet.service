@@ -89,17 +89,17 @@ userSchema.methods.generateAuthToken = async function() {
 };
 
 userSchema.statics.findByCredential = async (email, password) => {
-    const user = await User.findOne({email});
+    const user = await User.findOne({email}).catch((error) => {
+        console.error(error.message)
+    });
 
-    if(!user) {
-        throw new Error('Unable to login');
-    }
+    console.log(user ? "user exists: "+ user : "Unable to login")
 
-    const isValidPass = await bcrypt.compare(password, user.password)
+    const isValidPass = await bcrypt.compare(password, user.password).catch((error)=>{
+        console.error(error.message)    
+    })
 
-    if(!isValidPass){
-        throw new Error('Unable to login');
-    }
+    console.log(isValidPass ? "valid password: " + isValidPass : "Unable to login")
 
     return user;
 }
