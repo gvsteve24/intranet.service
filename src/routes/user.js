@@ -133,7 +133,6 @@ router.patch('/users/info', auth, uploadUserPhoto, async (req, res) => {
         await user.save();
         res.status(200).send(user);
     } catch (error) {
-        console.log('error');
         res.status(400).send(error);
     }
 });
