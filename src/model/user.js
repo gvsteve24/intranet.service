@@ -86,7 +86,7 @@ userSchema.methods.generateAuthToken = async function() {
 
     await user.save().catch((error) => {
         console.error(error.message)
-    });
+    }); 
     return token;
 };
 
