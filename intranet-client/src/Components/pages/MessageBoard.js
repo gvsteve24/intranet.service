@@ -430,7 +430,7 @@ const MessageModal = ({ active, suggestions, text, onTextChange, suggestionSelec
                         {suggestions.map((item, index) => <li key={index} onClick={() => suggestionSelected(item)}><span>{item}</span></li>)}
                     </ul>
                     <textarea name="content" className="content" id="initialFocus" placeholder="텍스트를 입력하세요" ref={register({required: true})}/>
-                    { errors.content && <span className="aler t">내용을 입력하십시오</span> }
+                    { errors.content && <span className="alert">내용을 입력하십시오</span> }
                     <StyledInput type="submit" value="보내기"/>
                 </form>
         </AriaModal>
