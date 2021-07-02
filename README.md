@@ -1,13 +1,11 @@
 # Intranet Service
 ### Intranet service is built to provide basic groupware feature for small business.
 
-### Site is now under maintenance, demo page will soon be public.
-
 ### Page Thumbnails
 
 **User Dashboard**
 
-<img width="960" alt="Userboard_loggedin" src="https://user-images.githubusercontent.com/28102768/124241103-6a2df800-db56-11eb-966b-9a2400ba97b5.png">
+<img width="960" alt="Userboard_loggedin" src="https://user-images.githubusercontent.com/28102768/124244876-5edccb80-db5a-11eb-9b92-364bffe583ae.png">
 
 **Message Dashboard**
 
